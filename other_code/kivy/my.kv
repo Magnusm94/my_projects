@@ -1,0 +1,301 @@
+<TextInput>:
+    size_hint: 0.5, 0.2
+    multiline: True
+    font_size: 60
+
+<Button>:
+    font_size: 60
+    size_hint: 0.5, 0.10
+
+<Label>:
+    font_size: 60
+
+<CheckBox>:
+    canvas.before:
+        Color:
+            rgb: self.color
+        Rectangle:
+            source: self._radio_image if self.group else self._checkbox_image
+            size: sp(96), sp(64)
+            pos: int(self.center_x - sp(48)), int(self.center_y - sp(32))
+
+<LoginWindow>:
+    name: 'login'
+
+    username: username
+    passord: passord
+
+    FloatLayout:
+
+        TextInput:
+            pos_hint:{"x":0.1, "top": 0.85}
+            size_hint: 0.8, 0.2
+            id: username
+            hint_text: 'Brukernavn'
+
+        TextInput:
+            pos_hint:{"x":0.1, "top": 0.5}
+            size_hint: 0.8, 0.2
+            id: passord
+            password: True
+            hint_text: 'Passord'
+
+        Button:
+            pos_hint:{"x":0.5, "top": 0.15}
+            text: "Logg inn"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0, "top": 0.15}
+            text: "Registrer"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.registrerBtn()
+
+<MainWindow>:
+    name: 'main'
+
+    FloatLayout:
+        Button:
+            pos_hint:{"x":0,"top":1}
+            size_hint: 0.5, 0.5
+            text: "Levering"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.bytteBtn()
+
+        Button:
+            pos_hint:{"x":0.5,"top": 1}
+            size_hint: 0.5, 0.5
+            text: "Testing"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.proveBtn()
+
+        Button:
+            pos_hint:{"x":0,"bottom":1}
+            size_hint: 0.5, 0.5
+            text: "Salg"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.salgBtn()
+
+        Button:
+            pos_hint:{"x":0.5, "bottom": 1}
+            size_hint: 0.5, 0.5
+            text: "Registrer nye varer"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.registrerBtn()
+
+<LeveranseWindow>:
+    name: "leveranse"
+
+    FloatLayout:
+
+        Button:
+            pos_hint:{"x":0, "top": 1}
+            size_hint: 0.5, 0.9
+            text: "Fast kunde"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.bytteBtn()
+
+        Button:
+            pos_hint:{"x":0.5, "top": 1}
+            size_hint: 0.5, 0.9
+            text: "PrÃ¸veuke"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.trialBtn()
+
+        Button:
+            pos_hint:{"x":0, "bottom": 1}
+            size_hint: 1, 0.1
+            text: "Tilbake"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.tilbakeBtn()
+
+<BytteWindow>:
+    name: "swap"
+
+    firma: firma
+    blomst: blomst
+    retur: retur
+    notat: notat
+    email: email
+    telefon: telefon
+    kontaktperson: kontaktperson
+
+    FloatLayout:
+
+        TextInput:
+            pos_hint: {"x":0, "top":1}
+            size_hint: 0.5, 0.15
+            id: firma
+            hint_text: 'Firmanavn*'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":1}
+            size_hint: 0.5, 0.15
+            id: kontaktperson
+            disabled: True
+            hint_text: 'Navn kontaktperson'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.82}
+            size_hint: 0.5, 0.15
+            id: blomst
+            hint_text: 'ID pÃ¥ blomster*'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.82}
+            size_hint: 0.5, 0.15
+            id: telefon
+            disabled: True
+            hint_text: 'Telefon'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.64}
+            size_hint: 0.5, 0.15
+            id: retur
+            hint_text: 'ID returblomster'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.64}
+            size_hint: 0.5, 0.15
+            id: email
+            disabled: True
+            hint_text: 'E-post'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.46}
+            size_hint: 0.5, 0.15
+            id: notat
+            hint_text: 'Notater'
+
+        TextInput:
+            deactivate: True
+            pos_hint: {"x":0, "top":0.46}
+            size_hint: 0.5, 0.15
+            id: addresse
+            hint_text: 'Addresse'
+
+        Button:
+            pos_hint:{"x":0, "bottom": 1}
+            text: "Tilbake"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.tilbakeBtn()
+
+        Button:
+            pos_hint:{"x":0.5, "bottom": 1}
+            text: "Bekreft"
+            on_release:
+                root.submitBtn()
+
+        BoxLayout:
+            pos_hint:{"x":0, "top": 0.28}
+            size_hint: 1, 0.15
+
+            Label:
+                text: 'Fast kunde'
+
+            CheckBox:
+
+            Label:
+                text: 'PrÃ¸veuke'
+
+            CheckBox:
+
+<VareregWindow>:
+    name: "varereg"
+
+    farge: farge
+    antall: antall
+    storrelse: storrelse
+    nedskrivning: nedskrivning
+    pris: pris
+    fargekode: fargekode
+    vase: vase
+    hoyde: hoyde
+    form: form
+    location: location
+
+    FloatLayout:
+
+        TextInput:
+            pos_hint: {"x":0, "top":1}
+            size_hint: 0.5, 0.18
+            id: farge
+            hint_text: 'Farge'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":1}
+            size_hint: 0.5, 0.18
+            id: fargekode
+            hint_text: 'Fargekode'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.82}
+            size_hint: 0.5, 0.18
+            id: storrelse
+            hint_text: 'StÃ¸rrelse'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.82}
+            size_hint: 0.5, 0.18
+            id: antall
+            hint_text: 'Antall'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.64}
+            size_hint: 0.5, 0.18
+            id: pris
+            hint_text: 'InnkjÃ¸pspris'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.64}
+            size_hint: 0.5, 0.18
+            id: nedskrivning
+            hint_text: 'Nedskrivningstid (Ã¥r)'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.46}
+            size_hint: 0.5, 0.18
+            id: form
+            hint_text: 'Form'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.46}
+            size_hint: 0.5, 0.18
+            id: vase
+            hint_text: 'Vase'
+
+        TextInput:
+            pos_hint: {"x":0, "top":0.28}
+            size_hint: 0.5, 0.18
+            id: hoyde
+            hint_text: 'HÃ¸yde'
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.28}
+            size_hint: 0.5, 0.18
+            id: location
+            hint_text: 'Lagerlokasjon'
+
+        Button:
+            pos_hint:{"x":0, "bottom": 1}
+            text: "Tilbake"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.tilbakeBtn()
+
+        Button:
+            pos_hint:{"x":0.5, "bottom": 1}
+            text: "Bekreft"
+
+<TestWindow>
