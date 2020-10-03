@@ -1,5 +1,3 @@
-
-
 class Reapeating:
 
     def __init__(self):
